@@ -1,19 +1,19 @@
-import streamlit as st 
-import pandas as pd 
+import streamlit as st
+import pandas as pd
+import altair as alt
 
-st.write('CMPD Traffic Stops')
-
-@st.cache_data 
+@st.cache_data
 def load_data(csv):
-    df=pd.read_csv(csv)
+    df = pd.read_csv(csv)
     return df
+stops = load_data('data/Officer_Traffic_Stops.csv')
 
+## Box plot
+box = alt.Chart(stops).mark_boxplot().encode(
+    x = alt.X('Was_a_Search_Conducted'),
+    y = alt.Y('Driver_Age')
+).properties(
+    width = 500,
+    title = 'Boxplot between Search Conducted vs Driver Age')
 
-
-
-stops = pd.read_csv('Data/Officer_Traffic_Stops.csv')
-
-st.dataframe(stops)
-
-st.write('hi this is prathap')
-st.header("Hii")
+st.altair_chart(box)
