@@ -17,3 +17,9 @@ st.dataframe(stops)
 
 st.write('hi this is prathap')
 st.header("Hii")
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+## Box plot
+sns.boxplot(x='Was_a_Search_Conducted', y='Driver_Age', data=stops)
+plt.show()
